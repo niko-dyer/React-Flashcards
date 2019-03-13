@@ -12,13 +12,17 @@ class Flashcard extends React.Component {
 
     render() {
         return (
-            <Card
-                fluid
-                color='red'
-                onClick={this.toggleQuestion}
-            >
-            {this.state.showQuestion ? this.props.question : this.props.answer}
-            </Card>
+            <div>
+                <Card
+                    fluid
+                    color='red'
+                    onClick={this.toggleQuestion}
+                    style={{padding: '30px', marginTop: '20px'}}
+                >
+                {this.state.showQuestion ? this.props.question : this.props.answer}
+                </Card>
+                <Button color='blue' onClick={() => this.props.remove(this.props.id)}>Delete</Button>
+            </div>
         )
     } 
 }

@@ -10,7 +10,7 @@ class Flashcards extends React.Component {
             <div>
                 {
                     this.props.flashcards.map(flashcard => (
-                        <Flashcard question={flashcard.question} answer={flashcard.answer} key={flashcard.id} raised />
+                        <Flashcard question={flashcard.question} id={flashcard.id} remove={this.props.remove} answer={flashcard.answer} key={flashcard.id} raised />
                     ))
                 }
             </div>
