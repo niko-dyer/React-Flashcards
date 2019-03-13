@@ -2,7 +2,7 @@ import React from 'react';
 import Flashcards from './Flashcards'
 import FlashcardForm from './FlashcardForm'
 import './App.css';
-import { Container, Header } from 'semantic-ui-react'
+import { Container, Header, Button, Icon, Segment } from 'semantic-ui-react'
 
 class App extends React.Component {
   state = {
@@ -10,7 +10,8 @@ class App extends React.Component {
       { id: 1, question: 'Does this work?', answer: 'Not yet' },
       { id: 2, question: 'Test', answer: 'Testing' },
       { id: 3, question: 'Test2', answer: 'Testing2' }
-    ]
+    ],
+    showForm: false
   }
 
   getId = () => Math.floor((1 + Math.random()) * 10000)
@@ -28,12 +29,20 @@ class App extends React.Component {
     this.setState({ flashcards: [...flashcards] })
   }
 
+  toggleForm = () => this.setState({ showForm: !this.state.showForm })
+
   render() {
     return (
       <Container textAlign='center'>
         <Header as='h1'>React Flashcards</Header>
+        <hr />
         <br />
-        <FlashcardForm add={this.addFlashcard} />
+        <Segment basic>
+          <Button icon color='blue' onClick={this.toggleForm}>
+            <Icon name={this.state.showForm ? 'angle double up' : 'angle double down'} />
+          </Button>
+          { this.state.showForm ? <FlashcardForm add={this.addFlashcard} /> : null }
+        </Segment>
         <hr />
         <Flashcards flashcards={this.state.flashcards} remove={this.removeFlashcard} />
       </Container>
